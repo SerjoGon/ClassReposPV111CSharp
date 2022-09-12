@@ -76,6 +76,7 @@ namespace Class12._09._2022
                 Console.WriteLine("Только числа!");
             }*/
             #endregion
+
             #region TASKTREE
             int[] massive2 = new int[12] { 7, 6, 5, 3, 4, 7, 6, 5, 8, 7, 6, 5 };
             int counter = 0;
