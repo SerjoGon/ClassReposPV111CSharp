@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstProjectOnCsharp", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csharp_Practice", "Csharp_Practice\Csharp_Practice.csproj", "{AFC00296-6108-4343-A13B-C51F35EB7DDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module3Tasks", "Module3Tasks\Module3Tasks.csproj", "{60D5A691-1CBF-42BB-B410-1CDEC4F856B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AFC00296-6108-4343-A13B-C51F35EB7DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFC00296-6108-4343-A13B-C51F35EB7DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFC00296-6108-4343-A13B-C51F35EB7DDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D5A691-1CBF-42BB-B410-1CDEC4F856B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D5A691-1CBF-42BB-B410-1CDEC4F856B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D5A691-1CBF-42BB-B410-1CDEC4F856B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D5A691-1CBF-42BB-B410-1CDEC4F856B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
