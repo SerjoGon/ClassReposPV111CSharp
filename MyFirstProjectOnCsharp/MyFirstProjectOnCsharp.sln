@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopModule5", "ShopModule5\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class26_09_Delegate", "Class26_09_Delegate\Class26_09_Delegate.csproj", "{70085B83-A34F-40DE-BB23-2C0E19E0FC9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class_26_09Events", "Class_26_09Events\Class_26_09Events.csproj", "{B2427114-B4E5-4D29-BA54-0DF56038D3C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{70085B83-A34F-40DE-BB23-2C0E19E0FC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70085B83-A34F-40DE-BB23-2C0E19E0FC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70085B83-A34F-40DE-BB23-2C0E19E0FC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
