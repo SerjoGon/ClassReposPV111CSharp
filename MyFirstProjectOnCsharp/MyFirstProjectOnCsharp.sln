@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetlangCSharpmodule4", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class_23_09_BookShop", "Class_23_09_BookShop\Class_23_09_BookShop.csproj", "{D12832A7-1FD8-4AE4-9DA9-BFBBFDC2A846}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopModule5", "ShopModule5\ShopModule5.csproj", "{267CD2B0-B920-4F6B-A7A0-F621D23ADE88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D12832A7-1FD8-4AE4-9DA9-BFBBFDC2A846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D12832A7-1FD8-4AE4-9DA9-BFBBFDC2A846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D12832A7-1FD8-4AE4-9DA9-BFBBFDC2A846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{267CD2B0-B920-4F6B-A7A0-F621D23ADE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{267CD2B0-B920-4F6B-A7A0-F621D23ADE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{267CD2B0-B920-4F6B-A7A0-F621D23ADE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{267CD2B0-B920-4F6B-A7A0-F621D23ADE88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
