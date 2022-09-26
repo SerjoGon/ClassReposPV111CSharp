@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,9 @@ namespace ShopModule5
             int storeroom = 22; store.Shoparea -= storeroom;
             store.GetShopInfo();
             Console.WriteLine(store == store2);
+            Shop shop3 = new Shop("", "", "", "", "", 0);
+            shop3.AddShop(shop3);
+            shop3.GetShopInfo();
         }
     }
     class Shop
@@ -88,6 +92,16 @@ namespace ShopModule5
         {
             shoparea._shoparea -= reduceshoparea;
             return shoparea._shoparea;
+        }
+        public  Shop AddShop(Shop shop)
+        {
+            Console.Write("Введите название магазина:"); string shname = Console.ReadLine(); 
+            Console.Write("Введите адресс магазина:"); string addres = Console.ReadLine(); 
+            Console.Write("Введите профиль магазина:"); string profShop = Console.ReadLine(); 
+            Console.Write("Введите номер телефона магазина:"); string phone = Console.ReadLine(); 
+            Console.Write("Введите эл.почту магазина:"); string email = Console.ReadLine(); 
+            Console.Write("Введите площадь магазина:"); int area = Int32.Parse(Console.ReadLine());
+            return shop;
         }
         public override string ToString()
         {
