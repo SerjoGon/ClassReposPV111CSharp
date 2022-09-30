@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class26_09_Delegate", "Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class_26_09Events", "Class_26_09Events\Class_26_09Events.csproj", "{B2427114-B4E5-4D29-BA54-0DF56038D3C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DZ_HouseBilder_CSharp", "DZ_HouseBilder_CSharp\DZ_HouseBilder_CSharp.csproj", "{CAA9B792-CB3F-4261-84BF-7E5E5D98680C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module2minmaxtask", "Module2minmaxtask\Module2minmaxtask.csproj", "{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2427114-B4E5-4D29-BA54-0DF56038D3C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAA9B792-CB3F-4261-84BF-7E5E5D98680C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAA9B792-CB3F-4261-84BF-7E5E5D98680C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAA9B792-CB3F-4261-84BF-7E5E5D98680C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAA9B792-CB3F-4261-84BF-7E5E5D98680C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
