@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class_26_09Events", "Class_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module2minmaxtask", "Module2minmaxtask\Module2minmaxtask.csproj", "{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBidersNew", "TeamBidersNew\TeamBidersNew.csproj", "{B50DEE50-8EFF-46B7-83A5-E2631D990B7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CBC312F-4D5B-47E6-BF40-BB34D9B215D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B50DEE50-8EFF-46B7-83A5-E2631D990B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50DEE50-8EFF-46B7-83A5-E2631D990B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50DEE50-8EFF-46B7-83A5-E2631D990B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50DEE50-8EFF-46B7-83A5-E2631D990B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
