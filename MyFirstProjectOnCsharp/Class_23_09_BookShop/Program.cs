@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Class_23_09_BookShop
 {
@@ -49,10 +53,12 @@ namespace Class_23_09_BookShop
             }*/
             #endregion
             #region BOOKSHOPCHICK2
-            List<Book> books = new List<Book>();
-            books.Add(new Book("ОНО", "America", "Horror", "Stephen King", 650, 1991, 1000));
-            books.Add(new Book("ОНО2", "America", "Horror", "Stephen King", 700, 1993, 1000));
-            books.Add(new Book("ОНО3", "America", "Horror", "Stephen King", 788, 1995, 1000));
+            List<Book> books = new List<Book>
+            {
+                new Book("ОНО", "America", "Horror", "Stephen King", 650, 1991, 1000),
+                new Book("ОНО2", "America", "Horror", "Stephen King", 700, 1993, 1000),
+                new Book("ОНО3", "America", "Horror", "Stephen King", 788, 1995, 1000)
+            };
             Shop sh = new Shop(Properties.Resources.ShopName, "ТЦ\"Рассвет\"", books);
             //foreach(Book book in books)
             //{
@@ -60,34 +66,38 @@ namespace Class_23_09_BookShop
             //}
             #endregion
             #region BOOKSHOPCHICK2
-            Shop sh1 = new Shop("Читай-Город ", "Тц\"Рассвет\"", books);
+            //Shop sh1 = new Shop("Читай-Город ", "Тц\"Рассвет\"", books);
             sh.GetShopName();
-            sh.GetAllBooks();Console.WriteLine();
+            sh.GetAllBooks(); Console.WriteLine();
             sh.AddABook(new Book("ОНА4", "America", "Horror", "Stephen King", 288, 1998, 1000));
-            sh.GetAllBooks();Console.WriteLine();
+            sh.GetAllBooks(); Console.WriteLine();
             sh.DeleteBookByName("ОНО");
-            sh.GetAllBooks();Console.WriteLine();
+            sh.GetAllBooks(); Console.WriteLine();
             sh.DeleteBookByIndex(1);
-            sh.GetAllBooks();Console.WriteLine();
+            sh.GetAllBooks(); Console.WriteLine();
             #endregion
             Command.HelpCommand();
             while (true)
             {
                 Console.WriteLine("Введите команду: ");
                 string command = Console.ReadLine();
-                switch(command)
+                switch (command)
                 {
                     case "help": Command.HelpCommand(); break;
-                    case "addbook":sh.AddABook(Command.AddBookCommand()); break; 
-                    case "removebook":sh.DeleteBookByIndex(Command.RemoveBookCommand()); break; 
-                    case "removebookname":sh.DeleteBookByName(Command.RemoveBookCommandName()); break;
-                    case "getallbook": Command.GetAllBookCommand();sh.GetAllBooks();break;
-                    default:Console.WriteLine("Не удалось распознать команду. Наберите help для списка комманд! ");break;
+                    case "addbook": sh.AddABook(Command.AddBookCommand()); break;
+                    case "removebook": sh.DeleteBookByIndex(Command.RemoveBookCommand()); break;
+                    case "removebookname": sh.DeleteBookByName(Command.RemoveBookCommandName()); break;
+                    case "getallbook": Command.GetAllBookCommand(); sh.GetAllBooks(); break;
+                    case "clear": Console.Clear(); break;
+                    case "saveshop": Command.SaveShop(sh); break;
+                    case "loadshop": break;
+                    default: Console.WriteLine("Не удалось распознать команду. Наберите help для списка комманд! "); break;
                 }
             }
         }
     }
-    class Book : IEnumerable, IComparable
+    [Serializable]
+    class Book : IEnumerable, IComparable, ISerializable
     {
         public string Name { get; set; }
         public string Publishing { get; set; }
@@ -123,80 +133,135 @@ namespace Class_23_09_BookShop
         {
             return ((Book)obj).Name.CompareTo((string)obj2);
         }
-    }
-    class Shop
-    {
-        List<Book> Books;
-        string NameShop { get; set; }
-        string Address { get; set; }
-        public Shop(string name, string address, List<Book> books)
+
+        private Book(SerializationInfo info, StreamingContext context)
         {
-            this.NameShop = name;
-            this.Address = address;
-            this.Books = books;
+            Name = info.GetString("Название книги");
+            Publishing = info.GetString("Издательство");
+            Genre = info.GetString("Жанр");
+            Author = info.GetString("Автор");
+            YearOfPublishing = info.GetString("Год написания");
+            NumberPages = info.GetString("Количество страниц");
+            Price = info.GetString("Цена");
         }
-        public void GetAllBooks()
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            foreach (Book book in Books)
+            info.AddValue("Имя магазина: ", Name);
+            info.AddValue("Адресс магазина: ", Publishing);
+            info.AddValue("Список книг магазина: ", Genre);
+            info.AddValue("Список книг магазина: ", Author);
+            info.AddValue("Список книг магазина: ", YearOfPublishing);
+            info.AddValue("Список книг магазина: ", NumberPages);
+            info.AddValue("Список книг магазина: ", Price);
+        }
+
+        [Serializable]
+        class Shop : ISerializable
+        {
+            readonly List<Book> Books;
+            string NameShop { get; set; }
+            string Address { get; set; }
+            public Shop()
             {
-                Console.WriteLine(book);
+
+            }
+            public Shop(string name, string address, List<Book> books)
+            {
+                this.NameShop = name;
+                this.Address = address;
+                this.Books = books;
+            }
+            public void GetAllBooks()
+            {
+                foreach (Book book in Books)
+                {
+                    Console.WriteLine(book);
+                }
+            }
+            public void GetShopName()
+            {
+                Console.WriteLine("Добро Пожаловать в {0}", NameShop);
+            }
+
+            public void AddABook(Book book)
+            {
+                Books.Add(book);
+            }
+            public void DeleteBookByName(string name)
+            {
+                int index = -1;
+                foreach (Book book in Books)
+                {
+                    if (book.CompareTo(name) == 0) index = Books.IndexOf(book);
+                }
+                if (index >= 0) Books.RemoveAt(index);
+            }
+            public void DeleteBookByIndex(int index)
+            {
+                Books.RemoveAt(index - 1);
+            }
+
+            private Shop(SerializationInfo info, StreamingContext context)
+            {
+                NameShop = info.GetString("Имя магазина");
+                Address = info.GetString("Адресс магазина");
+            }
+            void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+            {
+                info.AddValue("Имя магазина: ", NameShop);
+                info.AddValue("Адресс магазина: ", Address);
+                info.AddValue("Список книг магазина: ", Books);
             }
         }
-        public void GetShopName()
+        class Command
         {
-            Console.WriteLine("Добро Пожаловать в {0}", NameShop);
-        }
-       
-        public void AddABook(Book book)
-        {
-            Books.Add(book);
-        }
-        public void DeleteBookByName(string name)
-        {
-            int index = -1;
-            foreach(Book book in Books)
+            public static void HelpCommand()
             {
-                if(book.CompareTo(name) == 0) index = Books.IndexOf(book);
+                Console.WriteLine("Используйте addbook для добавления книги, removebook для удаления книги,removebookname, getallbook для списка книг!");
             }
-            if(index>=0) Books.RemoveAt(index);
-        }
-        public void DeleteBookByIndex(int index)
-        {
-            Books.RemoveAt(index);
-        }
-    }
-    class Command
-    {
-       public static void HelpCommand()
-        {
-            Console.WriteLine("Используйте addbook для добавления книги, removebook для удаления книги,removebookname, getallbook для списка книг!");
-        }
-        public static Book AddBookCommand()
-        {
-            Book book;
-            Console.Write("Введите имя книги: ");string name = Console.ReadLine();
-            Console.Write("Введите издательство книги: "); string publishing = Console.ReadLine();
-            Console.Write("Введите жанр книги: "); string genre = Console.ReadLine();
-            Console.Write("Введите Автора книги: "); string author = Console.ReadLine();
-            Console.Write("Введите количествостраниц книги: "); int numberpages= Int32.Parse(Console.ReadLine());
-            Console.Write("Введите год публикации книги: "); int yearofpublish= Int32.Parse(Console.ReadLine());
-            Console.Write("Введите цену книги: "); int price = Int32.Parse(Console.ReadLine());
-            book = new Book(name, publishing, genre, author, numberpages, yearofpublish, price);
-            return book;
-        }
-        public static int RemoveBookCommand()
-        {
-            Console.WriteLine("Укажите индекс удаляемой книги!");
-            return Int32.Parse(Console.ReadLine());
-        }
-        public static string RemoveBookCommandName()
-        {
-            Console.WriteLine("Укажите имя удаляемой книги!");
-            return Console.ReadLine();
-        }
-        public static void GetAllBookCommand()
-        {
-            Console.WriteLine("Список книг в магазине:");
+            public static Book AddBookCommand()
+            {
+                Book book;
+                Console.Write("Введите имя книги: "); string name = Console.ReadLine();
+                Console.Write("Введите издательство книги: "); string publishing = Console.ReadLine();
+                Console.Write("Введите жанр книги: "); string genre = Console.ReadLine();
+                Console.Write("Введите Автора книги: "); string author = Console.ReadLine();
+                Console.Write("Введите количествостраниц книги: "); int numberpages = Int32.Parse(Console.ReadLine());
+                Console.Write("Введите год публикации книги: "); int yearofpublish = Int32.Parse(Console.ReadLine());
+                Console.Write("Введите цену книги: "); int price = Int32.Parse(Console.ReadLine());
+                book = new Book(name, publishing, genre, author, numberpages, yearofpublish, price);
+                return book;
+            }
+            public static int RemoveBookCommand()
+            {
+                Console.WriteLine("Укажите индекс удаляемой книги!");
+                return Int32.Parse(Console.ReadLine());
+            }
+            public static string RemoveBookCommandName()
+            {
+                Console.WriteLine("Укажите имя удаляемой книги!");
+                return Console.ReadLine();
+            }
+            public static void GetAllBookCommand()
+            {
+                Console.WriteLine("Список книг в магазине:");
+            }
+            public static void SaveShop(Shop shop)
+            {
+                using (FileStream fs = new FileStream("shop.xml", FileMode.OpenOrCreate))
+                {
+                    XmlSerializer xml = new XmlSerializer(typeof(Shop));
+                    xml.Serialize(fs, shop);
+                }
+            }
+            //public static void LoadShop(Shop shop)
+            //{
+            //    using ()
+            //    {
+
+            //    }
+            //}
         }
     }
 }
+
