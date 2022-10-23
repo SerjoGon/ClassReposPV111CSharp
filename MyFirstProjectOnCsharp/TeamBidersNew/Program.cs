@@ -10,19 +10,19 @@ namespace TeamBidersNew
     {
         static void Main(string[] args)
         {
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+            logger.Info("Старт программы Строитель дома в консольке! {UserName}", "Serjo");
             List<Worker> workers = new List<Worker> { new Worker("Степан"), new Worker("Жека"), new Worker("Герасим"), new Worker("Митя") };
             House house = new House();
-            Team team = new Team("Жорик",workers);
+            Team team = new Team("Жорик", workers);
 
             Console.WriteLine(team.Name);
 
             Random r = new Random();
-
             for (int i = 0; i < 6; i++)
             {
                 team.w[r.Next(0, 3)].Build(house, team.t);
             }
-
             foreach (var a in team.t.report)
             {
                 Console.WriteLine(a);
@@ -42,6 +42,7 @@ namespace TeamBidersNew
             team.t.Report();
 
             house.Paint(team.t);
+            NLog.LogManager.Shutdown();
         }
     }
     interface IWorker
@@ -100,6 +101,8 @@ namespace TeamBidersNew
         public List<Window> window;
         public Door door;
         public Roof roof;
+
+
         public void Paint(TeamLeader t)
         {
             if (t.report.Count == 11)
@@ -119,8 +122,10 @@ namespace TeamBidersNew
                I II__I  I     XXXXXXX     I
             ~~~~~'   '~~~~~~~~~~~~~~~~~~~~~~~~";
                 Console.WriteLine(house);
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info("Дом построен в консольке! {UserName}{Date}", "Serjo", DateTime.Now);
             }
-            else Console.WriteLine("Дом еще не построен!");
+            //else Console.WriteLine("Дом еще не построен!");
         }
     }
     class Team : IWorker
@@ -129,7 +134,7 @@ namespace TeamBidersNew
         public List<Worker> w;
         public string Name { get; set; }
 
-        public Team(string name,List<Worker> workers)
+        public Team(string name, List<Worker> workers)
         {
             t = new TeamLeader(name);
             w = workers;
@@ -153,20 +158,26 @@ namespace TeamBidersNew
             {
                 Basement basement = new Basement();
                 basement.Do(house);
-                t.report.Add($"Работник {Name} Построил фундамент!");
+                //t.report.Add($"Работник {Name} Построил фундамент!");
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info("Работник { } Построил фундамент в {время завершения работ:}", Name, DateTime.Now);
             }
             else if (house.walls == null || house.walls.Count < 4)
             {
                 if (house.walls == null) house.walls = new List<Walls>();
                 Walls wall = new Walls();
                 wall.Do(house);
-                t.report.Add($"Работник {Name} построил стену {house.walls.Count}!");
+                //t.report.Add($"Работник {Name} построил стену {house.walls.Count}!");
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info("Работник { } Построил стену в {время завершения работ:}", Name, DateTime.Now);
             }
             else if (house.door == null)
             {
                 Door door = new Door();
                 door.Do(house);
-                t.report.Add($"Работник {Name} установил дверь!");
+                //t.report.Add($"Работник {Name} установил дверь!");
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info("Работник { } установил дверь в {время завершения работ:}", Name, DateTime.Now);
             }
 
             else if (house.window == null || house.window.Count < 4)
@@ -174,14 +185,18 @@ namespace TeamBidersNew
                 if (house.window == null) house.window = new List<Window>();
                 Window window = new Window();
                 window.Do(house);
-                t.report.Add($"Работник {Name} установил оконный стеклопакет {house.window.Count}!");
+                //t.report.Add($"Работник {Name} установил оконный стеклопакет {house.window.Count}!");
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info("Работник { } установил { } окно {время завершения работ:}", Name, house.window.Count, DateTime.Now);
             }
 
             else if (house.roof == null)
             {
                 Roof roof = new Roof();
                 roof.Do(house);
-                t.report.Add($"Работник {Name} построил крышу!");
+                //t.report.Add($"Работник {Name} построил крышу!");
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info("Работник { } Построил крышу {время завершения работ:}", Name, DateTime.Now);
             }
 
         }
@@ -196,7 +211,9 @@ namespace TeamBidersNew
         public void Report()
         {
             double d = (report.Count / 11.0) * 100;
-            Console.WriteLine($"Прораб {Name} докладывает, что {(int)d} % работ завершен!");
+            //Console.WriteLine($"Прораб {Name} докладывает, что {(int)d} % работ завершен!");
+            var logger = NLog.LogManager.GetLogger("Logger");
+            logger.Info("Прораб { } докладывает { во время: } { % работ завершен }", Name, DateTime.Now, d);
         }
     }
 }
