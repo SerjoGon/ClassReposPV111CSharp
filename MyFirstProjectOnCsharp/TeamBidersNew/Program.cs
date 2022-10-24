@@ -213,7 +213,7 @@ namespace TeamBidersNew
             double d = (report.Count / 11.0) * 100;
             //Console.WriteLine($"Прораб {Name} докладывает, что {(int)d} % работ завершен!");
             var logger = NLog.LogManager.GetLogger("Logger");
-            logger.Info("Прораб { } докладывает { во время: } { % работ завершен }", Name, DateTime.Now, d);
+            logger.Info("Прораб { Имя } докладывает, что во время { Время } { % работ }% работ завершен", Name, DateTime.Now, d);
         }
     }
 }
